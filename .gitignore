@@ -1,0 +1,174 @@
+# ComfyUI NVIDIA Docker Image - .gitignore
+
+# Docker-related files
+*.log
+.docker/
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Build artifacts
+build/
+dist/
+*.tar
+*.tar.gz
+
+# Docker volumes and bind mounts
+output*/
+models/
+temp/
+custom_nodes/*/models/
+custom_nodes/*/checkpoints/
+custom_nodes/*/embeddings/
+
+# ComfyUI specific
+ComfyUI/
+comfyui-env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+
+# Custom node cache and temporary files
+custom_nodes/*/.git/
+custom_nodes/*/venv/
+custom_nodes/*/env/
+custom_nodes/*/__pycache__/
+custom_nodes/*/node_modules/
+custom_nodes/*/dist/
+custom_nodes/*/build/
+custom_nodes/*/*.egg-info/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+.grunt/
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+.nyc_output/
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# CUDA cache
+.nv/
+
+# Python virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+.temp/
+
+# Archive files
+*.zip
+*.rar
+*.7z
+*.dmg
+*.iso
+
+# Large model files (should be mounted as volumes)
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.h5
+*.pb
+*.onnx
+
+# Custom node specific ignores
+custom_nodes/*/checkpoints/
+custom_nodes/*/models/
+custom_nodes/*/loras/
+custom_nodes/*/embeddings/
+custom_nodes/*/vae/
+custom_nodes/*/upscale_models/
+custom_nodes/*/controlnet/
+
+# Docker Compose override files
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Local configuration
+config.local.yml
+config.local.yaml
+settings.local.json
+
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# System files
+*.tmp
+*.temp

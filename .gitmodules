@@ -1,0 +1,129 @@
+[submodule "custom_nodes/ComfyUI-WanVideoWrapper"]
+	path = custom_nodes/ComfyUI-WanVideoWrapper
+	url = https://github.com/kijai/ComfyUI-WanVideoWrapper.git
+[submodule "custom_nodes/comfyui-crystools"]
+	path = custom_nodes/comfyui-crystools
+	url = https://github.com/crystian/comfyui-crystools.git
+[submodule "custom_nodes/ComfyUI-GGUF"]
+	path = custom_nodes/ComfyUI-GGUF
+	url = https://github.com/city96/ComfyUI-GGUF
+[submodule "custom_nodes/ComfyUI-VideoHelperSuite"]
+	path = custom_nodes/ComfyUI-VideoHelperSuite
+	url = https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git
+[submodule "custom_nodes/D2-nodes-ComfyUI"]
+	path = custom_nodes/D2-nodes-ComfyUI
+	url = https://github.com/da2el-ai/D2-nodes-ComfyUI.git
+[submodule "custom_nodes/ComfyUI-Impact-Pack"]
+	path = custom_nodes/ComfyUI-Impact-Pack
+	url = https://github.com/ltdrdata/ComfyUI-Impact-Pack.git
+[submodule "custom_nodes/comfyui-ollama"]
+	path = custom_nodes/comfyui-ollama
+	url = https://github.com/stavsap/comfyui-ollama.git
+[submodule "custom_nodes/ComfyS3"]
+	path = custom_nodes/ComfyS3
+	url = https://github.com/TemryL/ComfyS3.git
+[submodule "custom_nodes/ComfyUI-Florence2"]
+	path = custom_nodes/ComfyUI-Florence2
+	url = https://github.com/kijai/ComfyUI-Florence2.git
+[submodule "custom_nodes/comfy_mtb"]
+	path = custom_nodes/comfy_mtb
+	url = https://github.com/melMass/comfy_mtb.git
+[submodule "custom_nodes/comfyui-essentials"]
+	path = custom_nodes/comfyui-essentials
+	url = https://github.com/comfyorg/comfyui-essentials.git
+[submodule "custom_nodes/comfyui_controlnet_aux"]
+	path = custom_nodes/comfyui_controlnet_aux
+	url = https://github.com/Fannovel16/comfyui_controlnet_aux.git
+[submodule "custom_nodes/ComfyUI-Easy-Use"]
+	path = custom_nodes/ComfyUI-Easy-Use
+	url = https://github.com/yolain/ComfyUI-Easy-Use.git
+[submodule "custom_nodes/RES4LYF"]
+	path = custom_nodes/RES4LYF
+	url = https://github.com/ClownsharkBatwing/RES4LYF.git
+[submodule "custom_nodes/ComfyUI-Image-Saver"]
+	path = custom_nodes/ComfyUI-Image-Saver
+	url = https://github.com/alexopus/ComfyUI-Image-Saver.git
+[submodule "custom_nodes/was-node-suite-comfyui"]
+	path = custom_nodes/was-node-suite-comfyui
+	url = https://github.com/ltdrdata/was-node-suite-comfyui.git
+[submodule "custom_nodes/ComfyUI_PuLID_Flux_ll"]
+	path = custom_nodes/ComfyUI_PuLID_Flux_ll
+	url = https://github.com/lldacing/ComfyUI_PuLID_Flux_ll.git
+[submodule "custom_nodes/ComfyUI-MVAdapter"]
+	path = custom_nodes/ComfyUI-MVAdapter
+	url = https://github.com/huanngzh/ComfyUI-MVAdapter.git
+[submodule "custom_nodes/ComfyUI-IC-Light"]
+	path = custom_nodes/ComfyUI-IC-Light
+	url = https://github.com/kijai/ComfyUI-IC-Light.git
+[submodule "custom_nodes/ComfyUI_InstantID"]
+	path = custom_nodes/ComfyUI_InstantID
+	url = https://github.com/cubiq/ComfyUI_InstantID.git
+[submodule "custom_nodes/ComfyUI-GIMM-VFI"]
+	path = custom_nodes/ComfyUI-GIMM-VFI
+	url = https://github.com/kijai/ComfyUI-GIMM-VFI.git
+[submodule "custom_nodes/ComfyUI-MultiGPU"]
+	path = custom_nodes/ComfyUI-MultiGPU
+	url = https://github.com/pollockjj/ComfyUI-MultiGPU.git
+[submodule "custom_nodes/rgthree-comfy"]
+	path = custom_nodes/rgthree-comfy
+	url = https://github.com/rgthree/rgthree-comfy.git
+[submodule "custom_nodes/ComfyUI_Comfyroll_CustomNodes"]
+	path = custom_nodes/ComfyUI_Comfyroll_CustomNodes
+	url = https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git
+[submodule "custom_nodes/comfyui-various"]
+	path = custom_nodes/comfyui-various
+	url = https://github.com/jamesWalker55/comfyui-various
+[submodule "custom_nodes/ComfyUI-TextOnSegs"]
+	path = custom_nodes/ComfyUI-TextOnSegs
+	url = https://github.com/nkchocoai/ComfyUI-TextOnSegs.git
+[submodule "custom_nodes/sigmas_tools_and_the_golden_scheduler"]
+	path = custom_nodes/sigmas_tools_and_the_golden_scheduler
+	url = https://github.com/Extraltodeus/sigmas_tools_and_the_golden_scheduler.git
+[submodule "custom_nodes/SigmaWaveFormNode"]
+	path = custom_nodes/SigmaWaveFormNode
+	url = https://github.com/BenNarum/SigmaWaveFormNode.git
+[submodule "custom_nodes/ComfyUI_Noise"]
+	path = custom_nodes/ComfyUI_Noise
+	url = https://github.com/BlenderNeko/ComfyUI_Noise.git
+[submodule "custom_nodes/ComfyUI-Logic"]
+	path = custom_nodes/ComfyUI-Logic
+	url = https://github.com/theUpsider/ComfyUI-Logic.git
+[submodule "custom_nodes/ComfyUI-RequestNodes"]
+	path = custom_nodes/ComfyUI-RequestNodes
+	url = https://github.com/felixszeto/ComfyUI-RequestNodes.git
+[submodule "custom_nodes/ComfyUI-Custom-Scripts"]
+	path = custom_nodes/ComfyUI-Custom-Scripts
+	url = https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git
+[submodule "custom_nodes/ComfyUI-KJNodes"]
+	path = custom_nodes/ComfyUI-KJNodes
+	url = https://github.com/kijai/ComfyUI-KJNodes.git
+[submodule "custom_nodes/ComfyUI-Copilot"]
+	path = custom_nodes/ComfyUI-Copilot
+	url = https://github.com/AIDC-AI/ComfyUI-Copilot.git
+[submodule "custom_nodes/ComfyUI_JPS-Nodes"]
+	path = custom_nodes/ComfyUI_JPS-Nodes
+	url = https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git
+[submodule "ComfyUI-Frame-Interpolation"]
+	path = ComfyUI-Frame-Interpolation
+	url = https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git
+[submodule "ComfyUI-Image-Selector"]
+	path = ComfyUI-Image-Selector
+	url = https://github.com/SLAPaper/ComfyUI-Image-Selector.git
+[submodule "ComfyUI-Advanced-ControlNet"]
+	path = ComfyUI-Advanced-ControlNet
+	url = https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git
+[submodule "ComfyUI-HTTP"]
+	path = ComfyUI-HTTP
+	url = https://github.com/wawahuy/ComfyUI-HTTP.git
+[submodule "custom_nodes/ComfyUI-Frame-Interpolation"]
+	path = custom_nodes/ComfyUI-Frame-Interpolation
+	url = https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git
+[submodule "custom_nodes/ComfyUI-Image-Selector"]
+	path = custom_nodes/ComfyUI-Image-Selector
+	url = https://github.com/SLAPaper/ComfyUI-Image-Selector.git
+[submodule "custom_nodes/ComfyUI-Advanced-ControlNet"]
+	path = custom_nodes/ComfyUI-Advanced-ControlNet
+	url = https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git
+[submodule "custom_nodes/ComfyUI-HTTP"]
+	path = custom_nodes/ComfyUI-HTTP
+	url = https://github.com/wawahuy/ComfyUI-HTTP.git

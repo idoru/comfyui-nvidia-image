@@ -1,0 +1,58 @@
+# Example dual ComfyUI docker compose for multi GPU setups
+#
+# This setup runs 2x Wan 2.2 T2V 14B 1280x704x81 pipelines at 67s/it each on
+# my 2x3090 5950X setup with 64GB system RAM. Total power draw is 800W.
+#
+# Note that these instances share model directory to save space, but not
+# output directory to avoid the instances from overwriting each other's files.
+#
+services:
+  comfyui-0:
+    image: comfy-skcfi:sm86
+    ports:
+      - "8188:8188"
+    ipc: host
+    volumes:
+      - ./output-0:/home/ubuntu/ComfyUI/output
+      - ./models:/home/ubuntu/ComfyUI/models
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      stack:
+        soft: 67108864
+        hard: 67108864
+    environment:
+      CUDA_VISIBLE_DEVICES: 0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  comfyui-1:
+    image: comfy-skcfi:sm86
+    ports:
+      - "8189:8189"
+    ipc: host
+    volumes:
+      - ./output-1:/home/ubuntu/ComfyUI/output
+      - ./models:/home/ubuntu/ComfyUI/models
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      stack:
+        soft: 67108864
+        hard: 67108864
+    environment:
+      CUDA_VISIBLE_DEVICES: 1
+      PORT: 8189
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
