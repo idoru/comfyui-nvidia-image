@@ -11,7 +11,7 @@ CCS        = 8.0 8.6 8.9 9.0 12.0
 # All: build every image
 # ------------------------------------------------------------------
 .PHONY: all
-all: $(CCS)
+all: sm80 sm86 sm89 sm90 sm120
 
 # ------------------------------------------------------------------
 # Generic rule – builds an image for a *single* compute‑capability

@@ -43,8 +43,13 @@ COPY --chown=ubuntu:ubuntu custom_nodes/ /home/ubuntu/ComfyUI/custom_nodes/
 
 #Tweak deps and install Segment anything 2 ourselves as it won't build against NVIDIA's custom pytroch version label.
 #Tweak Impack Pack so it doesn't try to install SAM2 from source.
+#Fallback to onnxruntime on ARM64 (no gpu package)
+#Remove jetson-stats, crystools assumes we're on Jetson on arm64
 RUN cd /home/ubuntu && git clone https://github.com/facebookresearch/sam2 && cd sam2 && sed -i.bak '/^[[:space:]]*"torch[=<>][^"]*".*/d' pyproject.toml setup.py && \
-  pip install -e . && cd /home/ubuntu/ComfyUI/custom_nodes/ComfyUI-Impact-Pack && sed -i.bak '/^.*facebookresearch\/sam2.*$/d' requirements.txt
+  pip install -e . && cd /home/ubuntu/ComfyUI/custom_nodes/ComfyUI-Impact-Pack && sed -i.bak '/^.*facebookresearch\/sam2.*$/d' requirements.txt && \
+  cd /home/ubuntu/ComfyUI/custom_nodes && \
+  sed -i.onnxbak 's/onnxruntime-gpu$/onnxruntime\nonnxruntime-gpu; sys_platform != "darwin" and platform_machine == "x86_64"/' */requirements.txt && \
+  sed -i.jetsonbak '/^[[:space:]]*jetson-stats;.*/d' */requirements.txt
 
 RUN cd /home/ubuntu/ComfyUI/custom_nodes && \
   set -e ; \

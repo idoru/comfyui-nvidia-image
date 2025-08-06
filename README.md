@@ -92,6 +92,12 @@ This image supports a wide range of NVIDIA GPUs with different compute capabilit
 
 ## Quick Start
 
+### 0. Clone this repo and update submodules for custom nodes
+```
+git clone https://github.com/idoru/comfyui-nvidia-image.git
+cd comfyui-nvidia-image
+git submodule update --init
+```
 ### 1. Choose Your GPU's Docker Tag
 
 Find your GPU in the compatibility table above and note the corresponding Docker tag (e.g., `sm86` for RTX 3090, `sm89` for RTX 4090, `sm120` for RTX 5090).
@@ -115,7 +121,7 @@ make all
 ### 3. Run with Docker Compose
 
 ```bash
-# Edit docker-compose.yaml to use your GPU's tag
+# Edit docker-compose.yaml to use your GPU's tag and right number of instances with unique ports
 docker-compose up
 ```
 
@@ -152,7 +158,8 @@ The image comes pre-configured with essential ComfyUI custom nodes:
 - **comfyui-essentials**: Essential utility nodes
 - And many more...
 
-See the `custom_nodes/` directory for the complete list.
+See the `custom_nodes/` directory for the complete list. Open an issue or PR
+if you would like to see a popular custom node.
 
 ## Configuration
 
