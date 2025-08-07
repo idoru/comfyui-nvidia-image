@@ -127,3 +127,6 @@
 [submodule "custom_nodes/ComfyUI-HTTP"]
 	path = custom_nodes/ComfyUI-HTTP
 	url = https://github.com/wawahuy/ComfyUI-HTTP.git
+[submodule "custom_nodes/ComfyUI-SKCFI-NetworkFileIO"]
+	path = custom_nodes/ComfyUI-SKCFI-NetworkFileIO
+	url = https://github.com/idoru/ComfyUI-SKCFI-NetworkFileIO
