@@ -130,3 +130,6 @@
 [submodule "custom_nodes/ComfyUI-SKCFI-NetworkFileIO"]
 	path = custom_nodes/ComfyUI-SKCFI-NetworkFileIO
 	url = https://github.com/idoru/ComfyUI-SKCFI-NetworkFileIO
+[submodule "custom_nodes/cg-use-everywhere"]
+	path = custom_nodes/cg-use-everywhere
+	url = https://github.com/chrisgoringe/cg-use-everywhere.git
