@@ -56,7 +56,8 @@ RUN cd /home/ubuntu/ComfyUI/custom_nodes && \
   cd ComfyUI-Frame-Interpolation && python install.py && cd .. && \
   for dir in ./*/ ; do \
     if [ -f "$dir/requirements.txt" ]; then \
-      pushd "$dir" && pip install -c ../../constraints.txt -r requirements.txt && popd ;\
+      pushd "$dir" && pip install -c ../../constraints.txt -r requirements.txt && popd \
+      || { echo "FAILED: pip install failed in $dir" >&2; exit 1; } \
     fi ; \
   done > /home/ubuntu/ComfyUI/custom-node-install-receipt.txt
 
