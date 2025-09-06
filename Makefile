@@ -19,7 +19,7 @@ all: sm80 sm86 sm89 sm90 sm120
 .PHONY: $(CCS)
 $(CCS):
 	@echo "==> Building $(IMG_NAME):sm$* (CC=$*)"
-	@docker build --build-arg COMPUTE_CAPABILITY=$* \
+	@docker build --no-cache --build-arg COMPUTE_CAPABILITY=$* \
         -t $(IMG_NAME):sm$* .
 
 # ------------------------------------------------------------------
@@ -31,7 +31,7 @@ build-sm%:
 	# Convert it into a CC string (80 → 8.0, 86 → 8.6, 120 → 12.0)
 	@CC=$$(echo $* | sed -E 's/^([0-9]+)([0-9])$$/\1.\2/') && \
 	echo "==> Building $(IMG_NAME):sm$* (CC=$${CC})" && \
-	docker build --build-arg COMPUTE_CAPABILITY=$${CC} \
+	docker build --no-cache --build-arg COMPUTE_CAPABILITY=$${CC} \
 	             -t $(IMG_NAME):sm$* .
 
 # ------------------------------------------------------------------
