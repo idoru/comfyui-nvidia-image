@@ -133,3 +133,6 @@
 [submodule "custom_nodes/cg-use-everywhere"]
 	path = custom_nodes/cg-use-everywhere
 	url = https://github.com/chrisgoringe/cg-use-everywhere.git
+[submodule "custom_nodes/ComfyUI-MelBandRoFormer"]
+	path = custom_nodes/ComfyUI-MelBandRoFormer
+	url = https://github.com/kijai/ComfyUI-MelBandRoFormer.git
