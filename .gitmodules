@@ -139,3 +139,15 @@
 [submodule "custom_nodes/Depth-Anything-V2"]
 	path = custom_nodes/Depth-Anything-V2
 	url = https://github.com/DepthAnything/Depth-Anything-V2.git
+[submodule "custom_nodes/ComfyUI_tinyterraNodes"]
+	path = custom_nodes/ComfyUI_tinyterraNodes
+	url = https://github.com/TinyTerra/ComfyUI_tinyterraNodes
+[submodule "custom_nodes/ComfyUI-SP-Nodes"]
+	path = custom_nodes/ComfyUI-SP-Nodes
+	url = https://github.com/bananasss00/ComfyUI-SP-Nodes
+[submodule "custom_nodes/ComfyUI_Fill-Nodes"]
+	path = custom_nodes/ComfyUI_Fill-Nodes
+	url = https://github.com/filliptm/ComfyUI_Fill-Nodes
+[submodule "custom_nodes/ComfyUI-FluxTrainer"]
+	path = custom_nodes/ComfyUI-FluxTrainer
+	url = https://github.com/kijai/ComfyUI-FluxTrainer
