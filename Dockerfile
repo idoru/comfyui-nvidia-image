@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:25.06-py3 AS base
+FROM nvcr.io/nvidia/pytorch:25.09-py3 AS base
 #From Nvidia, recommended to run with gpu setings:
 #docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -it nvcr.io/nvidia/pytorch:25.06-py3
 #More info:
@@ -15,7 +15,7 @@ FROM nvcr.io/nvidia/pytorch:25.06-py3 AS base
 ARG COMPUTE_CAPABILITY="9.0"
 ENV COMPUTE_CAPABILITY=${COMPUTE_CAPABILITY}
 USER root
-RUN apt update && apt upgrade -y && apt install -y git curl libgl1 fonts-roboto && apt-get clean && \
+RUN apt update && apt upgrade -y && apt install -y git curl libgl1 fonts-roboto libcairo2-dev pkg-config python3-dev build-essential && apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
 USER ubuntu
@@ -25,7 +25,7 @@ ENV PATH="/home/ubuntu/.local/bin:${PATH}"
 FROM base AS torchaudio 
 
 RUN cd /home/ubuntu && \
-  git clone --depth 1 --branch "release/2.8" https://github.com/pytorch/audio.git ./torchaudio && cd ./torchaudio && \
+  git clone --depth 1 --branch "release/2.9" https://github.com/pytorch/audio.git ./torchaudio && cd ./torchaudio && \
   export PYTORCH_VERSION="$(pip show torch | grep ^Version | awk '{print $2}')" && \
   export TORCH_CUDA_ARCH_LIST="${COMPUTE_CAPABILITY}" USE_CUDA=1 USE_FFMPEG=1 BUILD_SOX=1 && \
   pip wheel . --no-build-isolation -v --no-deps -w /tmp/wheels

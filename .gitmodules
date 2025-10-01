@@ -136,3 +136,6 @@
 [submodule "custom_nodes/ComfyUI-MelBandRoFormer"]
 	path = custom_nodes/ComfyUI-MelBandRoFormer
 	url = https://github.com/kijai/ComfyUI-MelBandRoFormer.git
+[submodule "custom_nodes/Depth-Anything-V2"]
+	path = custom_nodes/Depth-Anything-V2
+	url = https://github.com/DepthAnything/Depth-Anything-V2.git
