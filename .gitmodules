@@ -151,3 +151,6 @@
 [submodule "custom_nodes/ComfyUI-FluxTrainer"]
 	path = custom_nodes/ComfyUI-FluxTrainer
 	url = https://github.com/kijai/ComfyUI-FluxTrainer
+[submodule "custom_nodes/ComfyUI-segment-anything-2"]
+	path = custom_nodes/ComfyUI-segment-anything-2
+	url = https://github.com/kijai/ComfyUI-segment-anything-2
