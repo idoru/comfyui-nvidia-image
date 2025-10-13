@@ -154,3 +154,6 @@
 [submodule "custom_nodes/ComfyUI-segment-anything-2"]
 	path = custom_nodes/ComfyUI-segment-anything-2
 	url = https://github.com/kijai/ComfyUI-segment-anything-2
+[submodule "custom_nodes/ComfyUI-DepthAnythingV2"]
+	path = custom_nodes/ComfyUI-DepthAnythingV2
+	url = https://github.com/kijai/ComfyUI-DepthAnythingV2

@@ -27,8 +27,7 @@ $(CCS):
 # ------------------------------------------------------------------
 .PHONY: build-sm%
 build-sm%:
-	# $* is the suffix after “sm” (e.g. 80, 86, 89, 90, 120)
-	# Convert it into a CC string (80 → 8.0, 86 → 8.6, 120 → 12.0)
+	# sm90 → 9.0, sm86 → 8.6, sm120 → 12.0, etc
 	@CC=$$(echo $* | sed -E 's/^([0-9]+)([0-9])$$/\1.\2/') && \
 	echo "==> Building $(IMG_NAME):sm$* (CC=$${CC})" && \
 	docker build --no-cache --build-arg COMPUTE_CAPABILITY=$${CC} \
