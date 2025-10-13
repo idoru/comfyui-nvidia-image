@@ -1,4 +1,4 @@
-FROM nvidia/cuda:13.0.1-devel-ubuntu24.04 AS base
+FROM nvidia/cuda:12.9.1-devel-ubuntu24.04 AS base
 #Set compute capability accordingly.
 #  8.0 e.g. A100.
 #  8.6 e.g. 3090.
@@ -30,7 +30,7 @@ ENV USE_NINJA=1 \
 RUN uv venv /home/ubuntu/venv && . /home/ubuntu/venv/bin/activate && \
   uv pip install -U pip packaging nvidia-ml-py PyOpenGL PyOpenGL_accelerate && \
   uv pip uninstall torch torchvision torchaudio torchtext torchdata && \
-  uv pip install --index-url "https://download.pytorch.org/whl/nightly/cu130" \
+  uv pip install --index-url "https://download.pytorch.org/whl/cu129" \
     "torch" "torchvision" "torchaudio" && \
   cd /home/ubuntu && git clone https://github.com/thu-ml/SageAttention.git && \
   cd /home/ubuntu/SageAttention && sed -i 's/^compute_capabilities = set()/compute_capabilities = {"'"${COMPUTE_CAPABILITY}"'"}/' setup.py && uv pip install -e . --no-build-isolation
