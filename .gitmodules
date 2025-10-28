@@ -157,3 +157,6 @@
 [submodule "custom_nodes/ComfyUI-DepthAnythingV2"]
 	path = custom_nodes/ComfyUI-DepthAnythingV2
 	url = https://github.com/kijai/ComfyUI-DepthAnythingV2
+[submodule "custom_nodes/ComfyUI-SeedVR2_VideoUpscaler"]
+	path = custom_nodes/ComfyUI-SeedVR2_VideoUpscaler
+	url = https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler.git
