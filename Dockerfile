@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.9.1-devel-ubuntu24.04 AS base
+FROM nvidia/cuda:13.1.1-devel-ubuntu24.04 AS base
 #Set compute capability accordingly.
 #  8.0 e.g. A100.
 #  8.6 e.g. 3090.
@@ -27,10 +27,10 @@ ENV USE_NINJA=1 \
     MAX_JOBS=0 \
     DEBUG=0
 
-RUN uv venv /home/ubuntu/venv && . /home/ubuntu/venv/bin/activate && \
-  uv pip install -U pip packaging nvidia-ml-py PyOpenGL PyOpenGL_accelerate && \
+RUN uv venv -p 3.13 /home/ubuntu/venv && . /home/ubuntu/venv/bin/activate && \
+  uv pip install -U pip packaging nvidia-ml-py PyOpenGL PyOpenGL_accelerate soundfile && \
   uv pip uninstall torch torchvision torchaudio torchtext torchdata && \
-  uv pip install --index-url "https://download.pytorch.org/whl/cu129" \
+  uv pip install --index-url "https://download.pytorch.org/whl/cu130" \
     "torch" "torchvision" "torchaudio" && \
   cd /home/ubuntu && git clone https://github.com/thu-ml/SageAttention.git && \
   cd /home/ubuntu/SageAttention && sed -i 's/^compute_capabilities = set()/compute_capabilities = {"'"${COMPUTE_CAPABILITY}"'"}/' setup.py && uv pip install -e . --no-build-isolation
@@ -44,7 +44,7 @@ RUN  cd /home/ubuntu && . /home/ubuntu/venv/bin/activate && \
   git clone https://github.com/facebookresearch/sam2 && cd sam2 && uv pip install -e . --no-build-isolation && \
   cd /home/ubuntu && \
   git clone https://github.com/comfyanonymous/ComfyUI.git && \
-  cd ComfyUI && uv pip install -r requirements.txt && \
+  cd ComfyUI && uv pip install -r requirements.txt && uv pip install -U 'sqlalchemy>=2.0' && \
   cd /home/ubuntu/ComfyUI/custom_nodes && mv /home/ubuntu/custom_nodes/* ./ && git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager && \
   cd /home/ubuntu/ComfyUI/custom_nodes && sed -i.onnxbak 's/onnxruntime-gpu$/onnxruntime\nonnxruntime-gpu; sys_platform != "darwin" and platform_machine == "x86_64"/' */requirements.txt && \
   sed -i.jetsonbak '/^[[:space:]]*jetson-stats;.*/d' */requirements.txt
