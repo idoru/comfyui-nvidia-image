@@ -16,10 +16,9 @@ USER ubuntu
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/home/ubuntu/venv/bin:/home/ubuntu/.local/bin:${PATH}"
 
-#Setup comfy and SageAttention 2.2; stay on numpy<2 packaging<25 to avoid conflicts
+#Setup comfy via comfy-cli; build SageAttention 2.2 from source against the venv torch
 FROM base AS comfy-skcfi
 
-#Setup uv venv, CUDA and SageAttention
 ENV USE_NINJA=1 \
     TORCH_CUDA_ARCH_LIST=${COMPUTE_CAPABILITY} \
     EXT_PARALLEL=4 \
@@ -27,38 +26,47 @@ ENV USE_NINJA=1 \
     MAX_JOBS=0 \
     DEBUG=0
 
+#Create the venv, install comfy-cli + the cu130 torch wheels we want comfy to use
 RUN uv venv -p 3.13 /home/ubuntu/venv && . /home/ubuntu/venv/bin/activate && \
-  uv pip install -U pip packaging nvidia-ml-py PyOpenGL PyOpenGL_accelerate soundfile && \
+  uv pip install -U pip packaging nvidia-ml-py PyOpenGL PyOpenGL_accelerate soundfile comfy-cli && \
   uv pip uninstall torch torchvision torchaudio torchtext torchdata && \
   uv pip install --index-url "https://download.pytorch.org/whl/cu130" \
-    "torch" "torchvision" "torchaudio" && \
-  cd /home/ubuntu && git clone https://github.com/thu-ml/SageAttention.git && \
-  cd /home/ubuntu/SageAttention && sed -i 's/^compute_capabilities = set()/compute_capabilities = {"'"${COMPUTE_CAPABILITY}"'"}/' setup.py && uv pip install -e . --no-build-isolation
+    "torch" "torchvision" "torchaudio"
 
-COPY --chown=ubuntu:ubuntu custom_nodes/ /home/ubuntu/custom_nodes/
+#SageAttention 2.2 — needs a per-CC patched setup.py, not pip-resolvable
+RUN cd /home/ubuntu && git clone https://github.com/thu-ml/SageAttention.git && \
+  cd /home/ubuntu/SageAttention && sed -i 's/^compute_capabilities = set()/compute_capabilities = {"'"${COMPUTE_CAPABILITY}"'"}/' setup.py && \
+  . /home/ubuntu/venv/bin/activate && uv pip install -e . --no-build-isolation
 
-#Fallback to onnxruntime on non-darwin ARM64 (no gpu package)
-#Dont install jetson-stats, crystools assumes we're on Jetson on arm64
+#sam2 — special build, not a ComfyUI custom node
+RUN cd /home/ubuntu && . /home/ubuntu/venv/bin/activate && \
+  git clone https://github.com/facebookresearch/sam2 && cd sam2 && uv pip install -e . --no-build-isolation
 
-RUN  cd /home/ubuntu && . /home/ubuntu/venv/bin/activate && \
-  git clone https://github.com/facebookresearch/sam2 && cd sam2 && uv pip install -e . --no-build-isolation && \
-  cd /home/ubuntu && \
-  git clone https://github.com/comfyanonymous/ComfyUI.git && \
-  cd ComfyUI && uv pip install -r requirements.txt && uv pip install -U 'sqlalchemy>=2.0' && \
-  cd /home/ubuntu/ComfyUI/custom_nodes && mv /home/ubuntu/custom_nodes/* ./ && git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager && \
-  cd /home/ubuntu/ComfyUI/custom_nodes && sed -i.onnxbak 's/onnxruntime-gpu$/onnxruntime\nonnxruntime-gpu; sys_platform != "darwin" and platform_machine == "x86_64"/' */requirements.txt && \
-  sed -i.jetsonbak '/^[[:space:]]*jetson-stats;.*/d' */requirements.txt
+#ComfyUI install via comfy-cli (replaces manual git clone of ComfyUI + ComfyUI-Manager).
+#--skip-torch-or-directml leaves the cu130 wheels we just installed alone.
+#--fast-deps uses uv for ComfyUI core requirements; it writes override.txt into
+#cwd, so cd somewhere writable first.
+RUN cd /home/ubuntu && . /home/ubuntu/venv/bin/activate && \
+  comfy --skip-prompt --no-enable-telemetry --workspace=/home/ubuntu/ComfyUI install \
+    --nvidia --skip-torch-or-directml --fast-deps
 
-RUN cd /home/ubuntu/ComfyUI/custom_nodes && . /home/ubuntu/venv/bin/activate && \
-  set -e ; \
-  for dir in */ ; do \
-    if [ -f "/home/ubuntu/ComfyUI/custom_nodes/${dir}/requirements.txt" ]; then \
-      cd "/home/ubuntu/ComfyUI/custom_nodes/${dir}" && uv pip install -r requirements.txt \
-      || { echo "FAILED: pip install failed in $dir" >&2; exit 1; } \
-    fi ; \
-  done > /home/ubuntu/ComfyUI/custom-node-install-receipt.txt
+#Restore custom nodes from snapshot. cm-cli clones each node and runs
+#`pip install -r requirements.txt` + `python install.py` per-node. We don't
+#use --uv-compile: it does a post-pass `uv pip compile` across all 49 nodes
+#which (a) rejects valid `git+https://...` deps used by Impact-Pack /
+#was-node-suite and (b) trips on ComfyUI-Copilot's `sqlalchemy<2.0` pin.
+COPY --chown=ubuntu:ubuntu snapshot.json /home/ubuntu/snapshot.json
+RUN cd /home/ubuntu && . /home/ubuntu/venv/bin/activate && \
+  comfy --skip-prompt --no-enable-telemetry --workspace=/home/ubuntu/ComfyUI \
+    node restore-snapshot /home/ubuntu/snapshot.json
 
-RUN cd /home/ubuntu/ComfyUI/custom_nodes/ComfyUI-Frame-Interpolation && python install.py
+#Force sqlalchemy back to 2.x — ComfyUI core needs it and ComfyUI-Copilot's
+#requirements.txt downgrades it to <2.0 during the per-node install above.
+RUN . /home/ubuntu/venv/bin/activate && uv pip install -U 'sqlalchemy>=2.0'
+
+#ComfyUI-Frame-Interpolation has a post-install model fetch not covered by requirements.txt
+RUN . /home/ubuntu/venv/bin/activate && \
+  cd /home/ubuntu/ComfyUI/custom_nodes/ComfyUI-Frame-Interpolation && python install.py
 
 ENV PORT=8188
 ENV PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
