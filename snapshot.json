@@ -200,6 +200,10 @@
     "https://github.com/cubiq/ComfyUI_IPAdapter_plus.git": {
       "hash": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
       "disabled": false
+    },
+    "https://github.com/Lightricks/ComfyUI-LTXVideo.git": {
+      "hash": "229437c6b65796d6a7a63ae34be2bd5ba31fa543",
+      "disabled": false
     }
   },
   "cnr_custom_nodes": {},

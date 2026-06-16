@@ -64,9 +64,19 @@ RUN cd /home/ubuntu && . /home/ubuntu/venv/bin/activate && \
 #requirements.txt downgrades it to <2.0 during the per-node install above.
 RUN . /home/ubuntu/venv/bin/activate && uv pip install -U 'sqlalchemy>=2.0'
 
-#ComfyUI-Frame-Interpolation has a post-install model fetch not covered by requirements.txt
+# ComfyUI-Frame-Interpolation has a post-install model fetch not covered by requirements.txt
 RUN . /home/ubuntu/venv/bin/activate && \
   cd /home/ubuntu/ComfyUI/custom_nodes/ComfyUI-Frame-Interpolation && python install.py
+
+# ComfyUI-LTXVideo imports 'pad' from kornia.geometry.transform.pyramid but
+# that function doesn't exist in any released kornia version (latest 0.8.3).
+# The file already has `import torch.nn.functional as F`, so just remove `pad`
+# from the kornia import and switch the two bare `pad(` calls to `F.pad(`.
+RUN sed -i '/^    pad,$/d' \
+    /home/ubuntu/ComfyUI/custom_nodes/ComfyUI-LTXVideo/pyramid_blending.py && \
+  sed -i 's/^        image = pad(/        image = F.pad(/; s/^        images = pad(/        images = F.pad(/' \
+    /home/ubuntu/ComfyUI/custom_nodes/ComfyUI-LTXVideo/pyramid_blending.py
+
 
 ENV PORT=8188
 ENV PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
