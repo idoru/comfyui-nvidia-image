@@ -23,7 +23,7 @@ $(CCS):
         -t $(IMG_NAME):sm$* .
 
 # ------------------------------------------------------------------
-# Pattern rule – allows “make sm80” style targets
+# Pattern rule – allows "make sm80" style targets
 # ------------------------------------------------------------------
 .PHONY: build-sm%
 build-sm%:
@@ -56,6 +56,24 @@ clean:
 	done
 
 # ------------------------------------------------------------------
+# Bump – update custom node hashes in snapshot.json to latest HEAD
+# ------------------------------------------------------------------
+.PHONY: bump
+bump:
+	@echo "==> Bumping custom node hashes to latest HEAD..."
+	@python3 scripts/bump_snapshot.py --snapshot snapshot.json
+	@git diff --stat snapshot.json || true
+	@echo ""
+	@echo "If the diff looks good, commit snapshot.json and rebuild."
+
+# ------------------------------------------------------------------
+# Bump-dry – preview what would change without writing
+# ------------------------------------------------------------------
+.PHONY: bump-dry
+bump-dry:
+	@python3 scripts/bump_snapshot.py --dry-run --snapshot snapshot.json
+
+# ------------------------------------------------------------------
 # Help – show a quick reference
 # ------------------------------------------------------------------
 .PHONY: help
@@ -63,5 +81,7 @@ help:
 	@echo "Makefile targets:"
 	@echo "  all      – Build images for all supported compute capabilities."
 	@echo "  smXX     – Build image for a single compute capability (e.g., sm80, sm90)."
+	@echo "  bump     – Update custom node hashes in snapshot.json to latest HEAD."
+	@echo "  bump-dry – Preview what bump would change (no write)."
 	@echo "  clean    – Remove all images created by this Makefile."
 	@echo "  help     – Show this help message."

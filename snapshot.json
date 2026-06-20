@@ -2,7 +2,7 @@
   "comfyui": "",
   "git_custom_nodes": {
     "https://github.com/kijai/ComfyUI-WanVideoWrapper.git": {
-      "hash": "df8f3e49daaad117cf3090cc916c83f3d001494c",
+      "hash": "088128b224242e110d3906c6750e9a3a348a659b",
       "disabled": false
     },
     "https://github.com/crystian/comfyui-crystools.git": {
@@ -14,11 +14,11 @@
       "disabled": false
     },
     "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git": {
-      "hash": "2984ec4c4b93292421888f38db74a5e8802a8ff8",
+      "hash": "4ee72c065db22c9d96c2427954dc69e7b908444b",
       "disabled": false
     },
     "https://github.com/da2el-ai/D2-nodes-ComfyUI.git": {
-      "hash": "73dd358ba8b72733c362ea8f33e1e913e1b1d56b",
+      "hash": "9479b2b5b9e37c31ee844a92d2e2011387b1c1ad",
       "disabled": false
     },
     "https://github.com/ltdrdata/ComfyUI-Impact-Pack.git": {
@@ -34,7 +34,7 @@
       "disabled": false
     },
     "https://github.com/kijai/ComfyUI-Florence2.git": {
-      "hash": "d8cb44d9c89ba03e807734aa310b72468770fb8b",
+      "hash": "9ece3de914214c5f581d725167bc9d0eeb0d1120",
       "disabled": false
     },
     "https://github.com/melMass/comfy_mtb.git": {
@@ -50,19 +50,19 @@
       "disabled": false
     },
     "https://github.com/yolain/ComfyUI-Easy-Use.git": {
-      "hash": "130c1b5796d9876a5f853fa0bea88e808cfda4ad",
+      "hash": "54d080bf6a4f52da287e984f305243c10db097f5",
       "disabled": false
     },
     "https://github.com/ClownsharkBatwing/RES4LYF.git": {
-      "hash": "0dc91c00c4c3fb38e7874fcd7a2a327765e8882c",
+      "hash": "419de2d7c78f415dde9aa352a7231820ebfc17a4",
       "disabled": false
     },
     "https://github.com/alexopus/ComfyUI-Image-Saver.git": {
-      "hash": "1a472c2dff1b8d31029c6ab0e2825081f68c3d05",
+      "hash": "92305d2e420a9e5fdfad45df174181ec49c90d3e",
       "disabled": false
     },
     "https://github.com/ltdrdata/was-node-suite-comfyui.git": {
-      "hash": "afeee09ba44e713ec52a413ac6b105fd06b2d356",
+      "hash": "44de705818d4663fefefde57ffe0ea5a9ea39df4",
       "disabled": false
     },
     "https://github.com/lldacing/ComfyUI_PuLID_Flux_ll.git": {
@@ -86,11 +86,11 @@
       "disabled": false
     },
     "https://github.com/pollockjj/ComfyUI-MultiGPU.git": {
-      "hash": "a38cbda5fb64232bfa67867d55ae473d2c44d54e",
+      "hash": "b51c99a525e9607e43545ee2a8b7694c74a4775a",
       "disabled": false
     },
     "https://github.com/rgthree/rgthree-comfy.git": {
-      "hash": "683836c46e898668936c433502504cc0627482c5",
+      "hash": "738105af5fb14e96fbecaf406dc356e284797e8c",
       "disabled": false
     },
     "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git": {
@@ -130,11 +130,11 @@
       "disabled": false
     },
     "https://github.com/kijai/ComfyUI-KJNodes.git": {
-      "hash": "01d9fa9c983273532cacdf9532c74a93c7dc86d2",
+      "hash": "7f43f2ce910a27971bdbbf3fb5a52081457f32e2",
       "disabled": false
     },
     "https://github.com/AIDC-AI/ComfyUI-Copilot.git": {
-      "hash": "008ebe67ad944664f868b0c663f9c41dfaaa78d2",
+      "hash": "f04a01a9fce8e3cb21f2a21a14fc971d5753dc36",
       "disabled": false
     },
     "https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git": {
@@ -150,7 +150,7 @@
       "disabled": false
     },
     "https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git": {
-      "hash": "b03791e4560482d44236788af2f4fb9b58c31452",
+      "hash": "ba0795aaaa6d100f8d84a1f060df682bcc1091fa",
       "disabled": false
     },
     "https://github.com/wawahuy/ComfyUI-HTTP.git": {
@@ -162,7 +162,7 @@
       "disabled": false
     },
     "https://github.com/chrisgoringe/cg-use-everywhere.git": {
-      "hash": "a3952a4480a07fc3df03ec8be315dfcd11bd5135",
+      "hash": "632ed7bb51bb18ceb03ccaefe1f34be8bd416500",
       "disabled": false
     },
     "https://github.com/kijai/ComfyUI-MelBandRoFormer.git": {
@@ -170,7 +170,7 @@
       "disabled": false
     },
     "https://github.com/TinyTerra/ComfyUI_tinyterraNodes": {
-      "hash": "b5bb57f4b13463bd31355edf0aeb83c57ff795b3",
+      "hash": "15411635b1d49794372e730091654521e3155dce",
       "disabled": false
     },
     "https://github.com/bananasss00/ComfyUI-SP-Nodes": {
@@ -178,7 +178,7 @@
       "disabled": false
     },
     "https://github.com/filliptm/ComfyUI_Fill-Nodes": {
-      "hash": "845b040f930caaba4e82b6ea80032300cafcb649",
+      "hash": "2f0d24e4d87ed628a8a2c952ac90d4b1ccb3b79f",
       "disabled": false
     },
     "https://github.com/kijai/ComfyUI-FluxTrainer": {
@@ -202,7 +202,7 @@
       "disabled": false
     },
     "https://github.com/Lightricks/ComfyUI-LTXVideo.git": {
-      "hash": "229437c6b65796d6a7a63ae34be2bd5ba31fa543",
+      "hash": "4f45fd6c222eb06eb3e46605da62e7c889e4be5c",
       "disabled": false
     }
   },

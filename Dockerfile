@@ -1,4 +1,4 @@
-FROM nvidia/cuda:13.1.1-devel-ubuntu24.04 AS base
+FROM nvidia/cuda:13.0.0-devel-ubuntu24.04 AS base
 #Set compute capability accordingly.
 #  8.0 e.g. A100.
 #  8.6 e.g. 3090.
@@ -8,7 +8,8 @@ FROM nvidia/cuda:13.1.1-devel-ubuntu24.04 AS base
 #See https://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/ for more.
 ARG COMPUTE_CAPABILITY="9.0"
 ENV COMPUTE_CAPABILITY=${COMPUTE_CAPABILITY}
-USER root
+# USER root is default for nvidia/cuda images, but explicit declaration causes
+# "unable to find user root" in some Docker-in-Docker setups. Omit it.
 RUN apt update && apt upgrade -y && apt install -y git curl libgl1 libopengl0 libglx0 ninja-build fonts-roboto libcairo2-dev pkg-config python3-dev build-essential && apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
