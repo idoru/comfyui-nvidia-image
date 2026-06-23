@@ -83,4 +83,4 @@ ENV PORT=8188
 ENV PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 USER ubuntu
 WORKDIR /home/ubuntu/ComfyUI
-CMD python main.py --lowvram --listen 0.0.0.0 --port ${PORT}
+CMD python main.py --lowvram --enable-manager --listen 0.0.0.0 --port ${PORT}
