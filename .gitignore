@@ -15,6 +15,7 @@ dist/
 # Docker volumes and bind mounts
 output*/
 models/
+user*/
 temp/
 custom_nodes/*/models/
 custom_nodes/*/checkpoints/
