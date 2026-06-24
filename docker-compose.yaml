@@ -7,14 +7,15 @@
 # output directory to avoid the instances from overwriting each other's files.
 #
 services:
-  comfyui-0:
-    image: comfy-skcfi:sm86
+  comfyui:
+    image: comfy-skcfi:sm120
     ports:
       - "8188:8188"
     ipc: host
     volumes:
-      - ./output-0:/home/ubuntu/ComfyUI/output
+      - ./output:/home/ubuntu/ComfyUI/output
       - ./models:/home/ubuntu/ComfyUI/models
+      - ./user:/home/ubuntu/ComfyUI/user
     ulimits:
       memlock:
         soft: -1
@@ -31,28 +32,36 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
-  comfyui-1:
-    image: comfy-skcfi:sm86
-    ports:
-      - "8189:8189"
-    ipc: host
-    volumes:
-      - ./output-1:/home/ubuntu/ComfyUI/output
-      - ./models:/home/ubuntu/ComfyUI/models
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      stack:
-        soft: 67108864
-        hard: 67108864
-    environment:
-      CUDA_VISIBLE_DEVICES: 1
-      PORT: 8189
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS -m 3 http://127.0.0.1:8188/system_stats >/dev/null && curl -fsS -m 3 http://127.0.0.1:8188/queue | grep -q 'queue_'"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+
+  # comfyui-1:
+  #   image: comfy-skcfi:sm86
+  #   ports:
+  #     - "8189:8189"
+  #   ipc: host
+  #   volumes:
+  #     - ./output-1:/home/ubuntu/ComfyUI/output
+  #     - ./models:/home/ubuntu/ComfyUI/models
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #     stack:
+  #       soft: 67108864
+  #       hard: 67108864
+  #   environment:
+  #     CUDA_VISIBLE_DEVICES: 1
+  #     PORT: 8189
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: all
+  #             capabilities: [gpu]
