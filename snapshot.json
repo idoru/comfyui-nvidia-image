@@ -204,6 +204,10 @@
     "https://github.com/Lightricks/ComfyUI-LTXVideo.git": {
       "hash": "4f45fd6c222eb06eb3e46605da62e7c889e4be5c",
       "disabled": false
+    },
+    "https://github.com/ltdrdata/ComfyUI-Manager.git": {
+      "hash": "8ff2ba8ffe1b1f513932185c54cc50857c33f5ce",
+      "disabled": false
     }
   },
   "cnr_custom_nodes": {},

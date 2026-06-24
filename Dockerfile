@@ -36,7 +36,7 @@ RUN uv venv -p 3.13 /home/ubuntu/venv && . /home/ubuntu/venv/bin/activate && \
 
 #SageAttention 2.2 — needs a per-CC patched setup.py, not pip-resolvable
 RUN cd /home/ubuntu && git clone https://github.com/thu-ml/SageAttention.git && \
-  cd /home/ubuntu/SageAttention && sed -i 's/^compute_capabilities = set()/compute_capabilities = {"'"${COMPUTE_CAPABILITY}"'"}/' setup.py && \
+  cd /home/ubuntu/SageAttention && sed -i 's/^compute_capabilities = set()/compute_capabilities = {"'${COMPUTE_CAPABILITY}'"}/' setup.py && \
   . /home/ubuntu/venv/bin/activate && uv pip install -e . --no-build-isolation
 
 #sam2 — special build, not a ComfyUI custom node
@@ -61,8 +61,28 @@ RUN cd /home/ubuntu && . /home/ubuntu/venv/bin/activate && \
   comfy --skip-prompt --no-enable-telemetry --workspace=/home/ubuntu/ComfyUI \
     node restore-snapshot /home/ubuntu/snapshot.json
 
-#Force sqlalchemy back to 2.x — ComfyUI core needs it and ComfyUI-Copilot's
-#requirements.txt downgrades it to <2.0 during the per-node install above.
+# ComfyUI-Manager — restore-snapshot skips it if comfy install already placed
+# a different version, so clone explicitly to guarantee it's present.
+RUN cd /home/ubuntu/ComfyUI/custom_nodes && \
+  git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
+  cd ComfyUI-Manager && \
+  . /home/ubuntu/venv/bin/activate && \
+  pip install -r requirements.txt
+
+# ComfyUI-Workflow-Models-Downloader — server-side model downloads from workflow
+# metadata (properties.models). ComfyUI core's "Missing Models" UI only opens
+# browser download links (saves to client, not server). ComfyUI-Manager's model
+# download is whitelist-only (model-list.json). This node fills the gap: it
+# scans loaded workflows for missing models and downloads them into the correct
+# server-side folders from HuggingFace/CivitAI/direct URLs.
+RUN cd /home/ubuntu/ComfyUI/custom_nodes && \
+  git clone https://github.com/slahiri/ComfyUI-Workflow-Models-Downloader.git && \
+  cd ComfyUI-Workflow-Models-Downloader && \
+  . /home/ubuntu/venv/bin/activate && \
+  pip install -r requirements.txt
+
+# Force sqlalchemy back to 2.x — ComfyUI core needs it and ComfyUI-Copilot's
+# requirements.txt downgrades it to <2.0 during the per-node install above.
 RUN . /home/ubuntu/venv/bin/activate && uv pip install -U 'sqlalchemy>=2.0'
 
 # ComfyUI-Frame-Interpolation has a post-install model fetch not covered by requirements.txt
@@ -83,4 +103,4 @@ ENV PORT=8188
 ENV PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 USER ubuntu
 WORKDIR /home/ubuntu/ComfyUI
-CMD python main.py --lowvram --enable-manager --listen 0.0.0.0 --port ${PORT}
+CMD python main.py --lowvram --enable-manager-legacy-ui --listen 0.0.0.0 --port ${PORT}
